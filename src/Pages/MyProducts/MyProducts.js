@@ -13,7 +13,6 @@ const MyProducts = () => {
         headers: { authorization: `bearer ${localStorage.getItem('carToken')}` },
       }).then((res) => res.json()),
   });
-  console.log(myAdvertisements);
 
   return (
     <div className='overflow-x-auto p-10'>
