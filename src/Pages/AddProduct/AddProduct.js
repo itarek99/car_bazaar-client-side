@@ -1,6 +1,6 @@
 const AddProduct = () => {
   return (
-    <div className='w-full max-w-2xl mx-auto px-2'>
+    <div className='w-full max-w-3xl mx-auto px-2 mt-4'>
       <h3 className='text-xl font-bold mb-2'>Fill In The Details:</h3>
       <form className='bg-base-100'>
         <div className='grid grid-cols-1 lg:grid-cols-2 gap-4'>
