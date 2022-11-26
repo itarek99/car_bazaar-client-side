@@ -1,14 +1,21 @@
 import axios from 'axios';
-import { useContext } from 'react';
+import { useContext, useState } from 'react';
 import { useForm } from 'react-hook-form';
 import toast from 'react-hot-toast';
 import { Link, useNavigate } from 'react-router-dom';
 import { AuthContext } from '../../context/AuthProvider';
+import useToken from '../../hooks/useToken';
 
 const Register = () => {
   const { createUserWithEmail, updateCurrentUser } = useContext(AuthContext);
   const { register, handleSubmit, reset } = useForm();
   const navigate = useNavigate();
+  const [userEmail, setUserEmail] = useState('');
+  const [token] = useToken(userEmail);
+
+  if (token) {
+    navigate('/');
+  }
 
   const handleRegister = (data) => {
     const { email, password, name, photoURL, role } = data;
@@ -27,7 +34,7 @@ const Register = () => {
               .then((response) => {
                 if (response.data.acknowledged) {
                   toast.success('Registration Successful!');
-                  navigate('/');
+                  setUserEmail(email);
                 }
               })
               .catch(() => {

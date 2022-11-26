@@ -5,6 +5,7 @@ import AddProduct from '../Pages/AddProduct/AddProduct';
 import Home from '../Pages/Home/Home';
 import Login from '../Pages/Login/Login';
 import Register from '../Pages/Register/Register';
+import PrivateRoute from './PrivateRoute/PrivateRoute';
 
 const router = createBrowserRouter([
   {
@@ -16,7 +17,15 @@ const router = createBrowserRouter([
       { path: '/register', element: <Register /> },
     ],
   },
-  { path: '/dashboard', element: <DashboardLayout />, children: [{ path: 'add-product', element: <AddProduct /> }] },
+  {
+    path: '/dashboard',
+    element: (
+      <PrivateRoute>
+        <DashboardLayout />
+      </PrivateRoute>
+    ),
+    children: [{ path: 'add-product', element: <AddProduct /> }],
+  },
 ]);
 
 export default router;

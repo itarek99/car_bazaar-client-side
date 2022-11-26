@@ -1,7 +1,26 @@
+import { useContext } from 'react';
+import toast from 'react-hot-toast';
 import { HiMenuAlt3 } from 'react-icons/hi';
-import { Link, Outlet } from 'react-router-dom';
+import { Link, Outlet, useNavigate } from 'react-router-dom';
+import { AuthContext } from '../context/AuthProvider';
+import useSeller from '../hooks/useSeller';
 
 const DashboardLayout = () => {
+  const { logOut, user } = useContext(AuthContext);
+  const navigate = useNavigate();
+  const [isSeller] = useSeller(user?.email);
+
+  const handleLogOut = () => {
+    logOut()
+      .then(() => {
+        toast.success('You Have Been Successfully Logged Out.');
+        navigate('/');
+      })
+      .catch((err) => {
+        toast.error('Something Went Wrong!');
+      });
+  };
+
   return (
     <div className='drawer drawer-mobile'>
       <input id='dashboard-drawer' type='checkbox' className='drawer-toggle' />
@@ -22,15 +41,21 @@ const DashboardLayout = () => {
               CAR BAZAAR
             </Link>
           </li>
-          <li className='font-medium hover:text-primary'>
-            <Link to='/dashboard/add-product'>Add A Product </Link>
-          </li>
-          <li className='font-medium hover:text-primary'>
-            <Link to='/'>My Products</Link>
-          </li>
+          {isSeller && (
+            <>
+              <li className='font-medium hover:text-primary'>
+                <Link to='/dashboard/add-product'>Add A Product </Link>
+              </li>
+              <li className='font-medium hover:text-primary'>
+                <Link to='/'>My Products</Link>
+              </li>
+            </>
+          )}
 
           <li className='mt-auto'>
-            <button className='btn btn-primary text-white'>Log Out</button>
+            <button onClick={handleLogOut} className='btn btn-primary text-white'>
+              Log Out
+            </button>
           </li>
         </ul>
       </div>
