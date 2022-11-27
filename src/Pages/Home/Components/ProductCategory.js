@@ -8,10 +8,14 @@ const ProductCategory = () => {
       </div>
       <div className='grid grid-cols-1 md:grid-cols-3 mt-8 gap-8'>
         <Link className='bg-red-300 p-4' to='category/sedan'>
-          <div>1</div>
+          <div>Sedan</div>
         </Link>
-        <div>1</div>
-        <div>1</div>
+        <Link className='bg-red-300 p-4' to='category/luxury'>
+          <div>Luxury</div>
+        </Link>
+        <Link className='bg-red-300 p-4' to='category/supercar'>
+          <div>Super Car</div>
+        </Link>
       </div>
     </div>
   );

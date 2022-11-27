@@ -30,6 +30,7 @@ const AddProduct = () => {
             advertiser_email: user.email,
             status: 'available',
             advertise: false,
+            posted_time: new Date().getTime(),
           };
 
           axios
