@@ -54,6 +54,8 @@ const router = createBrowserRouter([
       },
     ],
   },
+  // TODO: Add 404 Page
+  { path: '*', element: <p>Page Not Found</p> },
 ]);
 
 export default router;
