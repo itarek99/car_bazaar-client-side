@@ -1,11 +1,12 @@
 import { useQuery } from '@tanstack/react-query';
 import { useContext } from 'react';
+import Loader from '../../components/Loader/Loader';
 import { AuthContext } from '../../context/AuthProvider';
 
 const MyProducts = () => {
   const { user } = useContext(AuthContext);
 
-  const { data: myAdvertisements } = useQuery({
+  const { data: myAdvertisements = [] } = useQuery({
     queryKey: ['my-advertisements'],
     queryFn: () =>
       fetch(`http://localhost:5000/my-advertisements?email=${user.email}`, {
@@ -13,6 +14,8 @@ const MyProducts = () => {
         headers: { authorization: `bearer ${localStorage.getItem('carToken')}` },
       }).then((res) => res.json()),
   });
+
+  if (!myAdvertisements) return <Loader />;
 
   return (
     <div className='overflow-x-auto p-10'>

@@ -8,6 +8,7 @@ import MyProducts from '../Pages/MyProducts/MyProducts';
 import ProductsByCategory from '../Pages/ProductsByCategory/ProductsByCategory';
 import Register from '../Pages/Register/Register';
 import PrivateRoute from './PrivateRoute/PrivateRoute';
+import SellerRoute from './SellerRoute/SellerRoute';
 
 const router = createBrowserRouter([
   {
@@ -17,7 +18,14 @@ const router = createBrowserRouter([
       { path: '/', element: <Home /> },
       { path: '/login', element: <Login /> },
       { path: '/register', element: <Register /> },
-      { path: '/category/:id', element: <ProductsByCategory /> },
+      {
+        path: '/category/:id',
+        element: (
+          <PrivateRoute>
+            <ProductsByCategory />
+          </PrivateRoute>
+        ),
+      },
     ],
   },
   {
@@ -28,8 +36,22 @@ const router = createBrowserRouter([
       </PrivateRoute>
     ),
     children: [
-      { path: 'add-product', element: <AddProduct /> },
-      { path: 'my-products', element: <MyProducts /> },
+      {
+        path: 'add-product',
+        element: (
+          <SellerRoute>
+            <AddProduct />
+          </SellerRoute>
+        ),
+      },
+      {
+        path: 'my-products',
+        element: (
+          <SellerRoute>
+            <MyProducts />
+          </SellerRoute>
+        ),
+      },
     ],
   },
 ]);

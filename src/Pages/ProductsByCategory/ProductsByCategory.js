@@ -7,7 +7,10 @@ const ProductsByCategory = () => {
 
   const { data: carsByCategory } = useQuery({
     queryKey: ['productByCategory'],
-    queryFn: () => fetch(`http://localhost:5000/category/${id}`).then((res) => res.json()),
+    queryFn: () =>
+      fetch(`http://localhost:5000/category/${id}`, {
+        headers: { authorization: `bearer ${localStorage.getItem('carToken')}` },
+      }).then((res) => res.json()),
   });
 
   if (!carsByCategory) return <p>Loading....</p>;

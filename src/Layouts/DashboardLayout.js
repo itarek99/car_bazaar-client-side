@@ -1,6 +1,6 @@
 import { useContext } from 'react';
 import toast from 'react-hot-toast';
-import { HiMenuAlt3 } from 'react-icons/hi';
+import { HiHome, HiMenuAlt3 } from 'react-icons/hi';
 import { Link, Outlet, useNavigate } from 'react-router-dom';
 import { AuthContext } from '../context/AuthProvider';
 import useSeller from '../hooks/useSeller';
@@ -36,9 +36,9 @@ const DashboardLayout = () => {
       <div className='drawer-side'>
         <label htmlFor='dashboard-drawer' className='drawer-overlay'></label>
         <ul className='menu w-64 bg-gray-100 text-base-content'>
-          <li className='font-bold text-2xl mb-4'>
+          <li className='font-bold text-2xl mb-4 flex justify-center'>
             <Link className='hover:bg-transparent' to='/'>
-              CAR BAZAAR
+              <HiHome /> CAR BAZAAR
             </Link>
           </li>
           {isSeller && (
@@ -48,6 +48,14 @@ const DashboardLayout = () => {
               </li>
               <li className='font-medium hover:text-primary'>
                 <Link to='/dashboard/my-products'>My Products</Link>
+              </li>
+            </>
+          )}
+
+          {!isSeller && (
+            <>
+              <li className='font-medium hover:text-primary'>
+                <Link to='/dashboard/my-orders'>My Orders</Link>
               </li>
             </>
           )}

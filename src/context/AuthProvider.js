@@ -30,6 +30,7 @@ const AuthProvider = ({ children }) => {
   };
 
   const logOut = () => {
+    localStorage.removeItem('carToken');
     setLoading(true);
     return signOut(auth);
   };
