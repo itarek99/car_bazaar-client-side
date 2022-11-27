@@ -9,20 +9,29 @@ const ProductCategory = () => {
       <div className=''>
         <h3 className='font-bold text-3xl'>Browse By Category</h3>
       </div>
-      <div className='grid grid-cols-1 md:grid-cols-3 mt-8 gap-8'>
-        <Link className='shadow-lg py-4 px-8 border rounded-md' to='category/sedan'>
+      <div className='grid grid-cols-1 md:grid-cols-3 mt-6 gap-8'>
+        <Link
+          className='shadow-lg py-4 px-8 border rounded-md hover:bg-gray-100 transition-all duration-200'
+          to='category/sedan'
+        >
           <div className='flex justify-between items-center'>
             <p className='text-2xl font-bold'>Sedan</p>
             <img className='h-28' src={sedan} alt='sedan' />
           </div>
         </Link>
-        <Link className='shadow-lg py-4 px-8 border rounded-md' to='category/luxury'>
+        <Link
+          className='shadow-lg py-4 px-8 border rounded-md hover:bg-gray-100 transition-all duration-200'
+          to='category/luxury'
+        >
           <div className='flex justify-between items-center'>
             <p className='text-2xl font-bold'>Luxury</p>
             <img className='h-28' src={luxury} alt='sedan' />
           </div>
         </Link>
-        <Link className='shadow-lg py-4 px-8 border rounded-md' to='category/supercar'>
+        <Link
+          className='shadow-lg py-4 px-8 border rounded-md hover:bg-gray-100 transition-all duration-200'
+          to='category/supercar'
+        >
           <div className='flex justify-between items-center'>
             <p className='text-2xl font-bold'>Super Car</p>
             <img className='h-28' src={supercar} alt='sedan' />

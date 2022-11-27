@@ -1,12 +1,13 @@
 import { useQuery } from '@tanstack/react-query';
 import { useContext } from 'react';
+import toast from 'react-hot-toast';
 import Loader from '../../components/Loader/Loader';
 import { AuthContext } from '../../context/AuthProvider';
 
 const MyProducts = () => {
   const { user } = useContext(AuthContext);
 
-  const { data: myAdvertisements = [] } = useQuery({
+  const { data: myAdvertisements, refetch } = useQuery({
     queryKey: ['my-advertisements'],
     queryFn: () =>
       fetch(`http://localhost:5000/my-advertisements?email=${user.email}`, {
@@ -15,7 +16,36 @@ const MyProducts = () => {
       }).then((res) => res.json()),
   });
 
+  const handleAdvertise = (id) => {
+    fetch(`http://localhost:5000/advertisements/${id}`, { method: 'PATCH' })
+      .then((res) => res.json())
+      .then((result) => {
+        if (result.acknowledged) {
+          toast.success('Product Advertised!');
+          refetch();
+        }
+      });
+  };
+
+  const handleDelete = (id) => {
+    fetch(`http://localhost:5000/advertisements/${id}`, { method: 'DELETE' })
+      .then((res) => res.json())
+      .then((result) => {
+        if (result.acknowledged) {
+          toast.success('Product Deleted!');
+          refetch();
+        }
+      });
+  };
+
   if (!myAdvertisements) return <Loader />;
+
+  if (myAdvertisements.length < 1)
+    return (
+      <div>
+        <h3 className='p-10 text-lg'>Your Advertised Items Will Appear Here!</h3>
+      </div>
+    );
 
   return (
     <div className='overflow-x-auto p-10'>
@@ -44,9 +74,19 @@ const MyProducts = () => {
               <td>
                 <div className='flex gap-3'>
                   {myAdvertisement.advertise === false ? (
-                    <button className='btn btn-primary btn-sm text-xs'>Advertise</button>
+                    <button
+                      onClick={() => handleAdvertise(myAdvertisement._id)}
+                      className='btn btn-primary btn-sm text-xs text-white'
+                    >
+                      Advertise
+                    </button>
                   ) : null}
-                  <button className='btn btn-primary btn-sm text-xs'>Delete</button>
+                  <button
+                    onClick={() => handleDelete(myAdvertisement._id)}
+                    className='btn btn-primary btn-sm text-xs text-white'
+                  >
+                    Delete
+                  </button>
                 </div>
               </td>
             </tr>

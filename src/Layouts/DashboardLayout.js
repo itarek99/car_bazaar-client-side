@@ -26,7 +26,7 @@ const DashboardLayout = () => {
       <input id='dashboard-drawer' type='checkbox' className='drawer-toggle' />
 
       <div className='drawer-content scrollbar-hide pt-6'>
-        <div className='w-full max-w-2xl mx-auto text-right px-2'>
+        <div className='w-full mx-auto text-right px-4 md:px-10'>
           <label htmlFor='dashboard-drawer' className='btn btn-primary drawer-button lg:hidden'>
             <HiMenuAlt3 className='text-2xl' />
           </label>
