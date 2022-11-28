@@ -44,7 +44,7 @@ const AddProduct = () => {
               }
             })
             .catch((error) => {
-              console.log(error);
+              toast.error('Something Went Wrong');
             });
         }
       });
