@@ -9,7 +9,7 @@ const ProductCategory = () => {
       <div className=''>
         <h3 className='font-bold text-3xl'>Browse By Category</h3>
       </div>
-      <div className='grid grid-cols-1 md:grid-cols-3 mt-6 gap-8'>
+      <div className='grid grid-cols-1 lg:grid-cols-3 mt-6 gap-8'>
         <Link
           className='shadow-lg py-4 px-8 border rounded-md hover:bg-gray-100 transition-all duration-200'
           to='category/sedan'

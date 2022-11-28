@@ -47,8 +47,10 @@ const MyProducts = () => {
       </div>
     );
 
+  console.log(myAdvertisements);
+
   return (
-    <div className='overflow-x-auto p-10'>
+    <div className='overflow-x-auto '>
       <table className='table w-full'>
         <thead>
           <tr>
@@ -73,7 +75,7 @@ const MyProducts = () => {
               <td className='capitalize'>{myAdvertisement.status}</td>
               <td>
                 <div className='flex gap-3'>
-                  {myAdvertisement.advertise === false ? (
+                  {myAdvertisement.advertise === false && myAdvertisement.status === 'available' ? (
                     <button
                       onClick={() => handleAdvertise(myAdvertisement._id)}
                       className='btn btn-primary btn-sm text-xs text-white'

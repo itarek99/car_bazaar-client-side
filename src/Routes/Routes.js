@@ -4,6 +4,7 @@ import MainLayout from '../Layouts/MainLayout';
 import AddProduct from '../Pages/AddProduct/AddProduct';
 import Home from '../Pages/Home/Home';
 import Login from '../Pages/Login/Login';
+import MyOrders from '../Pages/MyOrders/MyOrders';
 import MyProducts from '../Pages/MyProducts/MyProducts';
 import NotFoundRoute from '../Pages/NotFoundRoute/NotFoundRoute';
 import ProductsByCategory from '../Pages/ProductsByCategory/ProductsByCategory';
@@ -52,6 +53,10 @@ const router = createBrowserRouter([
             <MyProducts />
           </SellerRoute>
         ),
+      },
+      {
+        path: 'my-orders',
+        element: <MyOrders />,
       },
     ],
   },

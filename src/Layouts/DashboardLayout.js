@@ -4,12 +4,14 @@ import { HiHome, HiMenuAlt3 } from 'react-icons/hi';
 import { Link, Outlet, useNavigate } from 'react-router-dom';
 import Loader from '../components/Loader/Loader';
 import { AuthContext } from '../context/AuthProvider';
+import useAdmin from '../hooks/useAdmin';
 import useSeller from '../hooks/useSeller';
 
 const DashboardLayout = () => {
   const { logOut, user } = useContext(AuthContext);
   const navigate = useNavigate();
   const [isSeller, isSellerLoading] = useSeller(user?.email);
+  const [isAdmin, isAdminLoading] = useAdmin(user?.email);
 
   const handleLogOut = () => {
     logOut()
@@ -22,6 +24,7 @@ const DashboardLayout = () => {
       });
   };
 
+  if (isAdminLoading) return <Loader />;
   if (isSellerLoading) return <Loader />;
 
   return (
@@ -55,13 +58,28 @@ const DashboardLayout = () => {
             </>
           )}
 
-          {!isSeller && (
+          {isAdmin && (
             <>
               <li className='font-medium hover:text-primary'>
-                <Link to='/dashboard/my-orders'>My Orders</Link>
+                <Link to='/dashboard/all-sellers'>All Sellers</Link>
+              </li>
+              <li className='font-medium hover:text-primary'>
+                <Link to='/dashboard/my-buyers'>All Buyers</Link>
+              </li>
+              <li className='font-medium hover:text-primary'>
+                <Link to='/dashboard/reported-products'>Reported Product</Link>
               </li>
             </>
           )}
+
+          {!isSeller ||
+            (!isAdmin && (
+              <>
+                <li className='font-medium hover:text-primary'>
+                  <Link to='/dashboard/my-orders'>My Orders</Link>
+                </li>
+              </>
+            ))}
 
           <li className='mt-auto'>
             <button onClick={handleLogOut} className='btn btn-primary text-white'>
