@@ -5,13 +5,17 @@ import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { AuthContext } from '../../context/AuthProvider';
 import useToken from '../../hooks/useToken';
 
+import { GoogleAuthProvider } from 'firebase/auth';
+
 const Login = () => {
-  const { loginWithEmail } = useContext(AuthContext);
+  const { loginWithEmail, loginWithGoogle } = useContext(AuthContext);
   const navigate = useNavigate();
   const location = useLocation();
   const [userEmail, setUserEmail] = useState('');
   const [token] = useToken(userEmail);
   const from = location.state?.from?.pathname || '/';
+
+  const provider = new GoogleAuthProvider();
 
   if (token) {
     navigate(from, { replace: true });
@@ -32,6 +36,13 @@ const Login = () => {
         console.log(err);
         toast.error('Something Went Wrong!');
       });
+  };
+
+  const handleProviderLogin = () => {
+    loginWithGoogle(provider).then((result) => {
+      const user = result.user;
+      setUserEmail(user.email);
+    });
   };
 
   return (
@@ -62,7 +73,9 @@ const Login = () => {
         </div>
 
         <div className='w-full max-w-md mx-auto'>
-          <button className='btn btn-primary bg-red-600 text-white w-full'>Google</button>
+          <button onClick={handleProviderLogin} className='btn btn-primary bg-red-600 text-white w-full'>
+            Google
+          </button>
           <p className='text-center mt-6'>
             Don't have an account?{' '}
             <Link to='/register' className='text-primary'>

@@ -24,6 +24,8 @@ const DashboardLayout = () => {
       });
   };
 
+  console.log(isAdmin, isSeller);
+
   if (isAdminLoading) return <Loader />;
   if (isSellerLoading) return <Loader />;
 
@@ -72,14 +74,11 @@ const DashboardLayout = () => {
             </>
           )}
 
-          {!isSeller ||
-            (!isAdmin && (
-              <>
-                <li className='font-medium hover:text-primary'>
-                  <Link to='/dashboard/my-orders'>My Orders</Link>
-                </li>
-              </>
-            ))}
+          {!isSeller && !isAdmin ? (
+            <li className='font-medium hover:text-primary'>
+              <Link to='/dashboard/my-orders'>My Orders</Link>
+            </li>
+          ) : null}
 
           <li className='mt-auto'>
             <button onClick={handleLogOut} className='btn btn-primary text-white'>

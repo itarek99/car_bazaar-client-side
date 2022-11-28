@@ -3,6 +3,7 @@ import {
   getAuth,
   onAuthStateChanged,
   signInWithEmailAndPassword,
+  signInWithPopup,
   signOut,
   updateProfile,
 } from 'firebase/auth';
@@ -29,6 +30,10 @@ const AuthProvider = ({ children }) => {
     return signInWithEmailAndPassword(auth, email, password);
   };
 
+  const loginWithGoogle = (provider) => {
+    return signInWithPopup(auth, provider);
+  };
+
   const logOut = () => {
     localStorage.removeItem('carToken');
     setLoading(true);
@@ -44,7 +49,7 @@ const AuthProvider = ({ children }) => {
     return () => unsubscribe();
   }, []);
 
-  const authInfo = { user, loading, createUserWithEmail, updateCurrentUser, loginWithEmail, logOut };
+  const authInfo = { user, loading, createUserWithEmail, updateCurrentUser, loginWithEmail, loginWithGoogle, logOut };
   return <AuthContext.Provider value={authInfo}>{children}</AuthContext.Provider>;
 };
 export default AuthProvider;
