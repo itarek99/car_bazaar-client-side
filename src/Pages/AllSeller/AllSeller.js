@@ -5,13 +5,13 @@ const AllSeller = () => {
   const { data: allSellers, refetch } = useQuery({
     queryKey: ['all-sellers'],
     queryFn: () =>
-      fetch(`http://localhost:5000/all-sellers`, {
+      fetch(`https://car-bazar-server-seven.vercel.app/all-sellers`, {
         headers: { authorization: `bearer ${localStorage.getItem('carToken')}` },
       }).then((res) => res.json()),
   });
 
   const handleDeleteSeller = (id) => {
-    fetch(`http://localhost:5000/all-sellers/${id}`, {
+    fetch(`https://car-bazar-server-seven.vercel.app/all-sellers/${id}`, {
       method: 'DELETE',
       headers: { authorization: `bearer ${localStorage.getItem('carToken')}` },
     })

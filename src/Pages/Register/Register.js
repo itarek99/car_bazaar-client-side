@@ -26,7 +26,7 @@ const Register = () => {
           .then(() => {
             reset();
             axios
-              .post('http://localhost:5000/users', {
+              .post('https://car-bazar-server-seven.vercel.app/users', {
                 name,
                 email,
                 role,

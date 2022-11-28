@@ -5,7 +5,7 @@ const MyOrders = () => {
   const { data: myOrders } = useQuery({
     queryKey: ['my-orders'],
     queryFn: () =>
-      fetch(`http://localhost:5000/my-orders`, {
+      fetch(`https://car-bazar-server-seven.vercel.app/my-orders`, {
         headers: { authorization: `bearer ${localStorage.getItem('carToken')}` },
       }).then((res) => res.json()),
   });

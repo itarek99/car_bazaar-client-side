@@ -34,7 +34,7 @@ const AddProduct = () => {
           };
 
           axios
-            .post('http://localhost:5000/cars', productInfoWithPhotoURl)
+            .post('https://car-bazar-server-seven.vercel.app/cars', productInfoWithPhotoURl)
             .then((response) => {
               if (response.data.acknowledged) {
                 toast.success('New Product Added!');

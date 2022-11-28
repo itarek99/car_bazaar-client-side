@@ -10,14 +10,14 @@ const MyProducts = () => {
   const { data: myAdvertisements, refetch } = useQuery({
     queryKey: ['my-advertisements'],
     queryFn: () =>
-      fetch(`http://localhost:5000/my-advertisements?email=${user.email}`, {
+      fetch(`https://car-bazar-server-seven.vercel.app/my-advertisements?email=${user.email}`, {
         method: 'GET',
         headers: { authorization: `bearer ${localStorage.getItem('carToken')}` },
       }).then((res) => res.json()),
   });
 
   const handleAdvertise = (id) => {
-    fetch(`http://localhost:5000/advertisements/${id}`, { method: 'PATCH' })
+    fetch(`https://car-bazar-server-seven.vercel.app/advertisements/${id}`, { method: 'PATCH' })
       .then((res) => res.json())
       .then((result) => {
         if (result.acknowledged) {
@@ -28,7 +28,7 @@ const MyProducts = () => {
   };
 
   const handleDelete = (id) => {
-    fetch(`http://localhost:5000/advertisements/${id}`, { method: 'DELETE' })
+    fetch(`https://car-bazar-server-seven.vercel.app/advertisements/${id}`, { method: 'DELETE' })
       .then((res) => res.json())
       .then((result) => {
         if (result.acknowledged) {

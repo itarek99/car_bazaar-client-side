@@ -4,7 +4,7 @@ import Loader from '../../../components/Loader/Loader';
 const AdvertisedProduct = () => {
   const { data: advertisedProducts = [] } = useQuery({
     queryKey: ['advertised-product'],
-    queryFn: () => fetch(`http://localhost:5000/advertised-products`).then((res) => res.json()),
+    queryFn: () => fetch(`https://car-bazar-server-seven.vercel.app/advertised-products`).then((res) => res.json()),
   });
 
   if (!advertisedProducts) return <Loader />;

@@ -19,7 +19,7 @@ const ProductsByCategory = () => {
   const { data: carsByCategory, refetch } = useQuery({
     queryKey: ['productByCategory'],
     queryFn: () =>
-      fetch(`http://localhost:5000/category/${id}`, {
+      fetch(`https://car-bazar-server-seven.vercel.app/category/${id}`, {
         headers: { authorization: `bearer ${localStorage.getItem('carToken')}` },
       }).then((res) => res.json()),
   });
@@ -45,7 +45,7 @@ const ProductsByCategory = () => {
       productId: bookingItem._id,
     };
 
-    fetch(`http://localhost:5000/bookings`, {
+    fetch(`https://car-bazar-server-seven.vercel.app/bookings`, {
       method: 'POST',
       headers: { 'content-type': 'application/json' },
       body: JSON.stringify(bookingData),
@@ -53,7 +53,7 @@ const ProductsByCategory = () => {
       .then((res) => res.json())
       .then((result) => {
         if (result.acknowledged) {
-          fetch(`http://localhost:5000/booked-status?productId=${result.id}`, { method: 'PATCH' });
+          fetch(`https://car-bazar-server-seven.vercel.app/booked-status?productId=${result.id}`, { method: 'PATCH' });
           toast.success('Booking Confirmed!');
           setBookingItem(null);
           refetch();
