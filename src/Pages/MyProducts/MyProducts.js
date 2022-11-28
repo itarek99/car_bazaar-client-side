@@ -47,8 +47,6 @@ const MyProducts = () => {
       </div>
     );
 
-  console.log(myAdvertisements);
-
   return (
     <div className='overflow-x-auto '>
       <table className='table w-full'>
