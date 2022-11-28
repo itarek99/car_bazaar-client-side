@@ -25,6 +25,9 @@ const Navbar = () => {
           </Link>
 
           <ul className='flex gap-8'>
+            <li className='font-medium  hover:text-primary transition-colors duration-300'>
+              <Link to='/blog'>Blog</Link>
+            </li>
             {user?.uid && (
               <>
                 <li className='font-medium  hover:text-primary transition-colors duration-300'>

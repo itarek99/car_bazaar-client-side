@@ -4,6 +4,7 @@ import MainLayout from '../Layouts/MainLayout';
 import AddProduct from '../Pages/AddProduct/AddProduct';
 import AllBuyers from '../Pages/AllByers/AllBuyers';
 import AllSeller from '../Pages/AllSeller/AllSeller';
+import Blog from '../Pages/Blog/Blog';
 import Home from '../Pages/Home/Home';
 import Login from '../Pages/Login/Login';
 import MyOrders from '../Pages/MyOrders/MyOrders';
@@ -23,6 +24,7 @@ const router = createBrowserRouter([
       { path: '/', element: <Home /> },
       { path: '/login', element: <Login /> },
       { path: '/register', element: <Register /> },
+      { path: '/blog', element: <Blog /> },
       {
         path: '/category/:id',
         element: (
