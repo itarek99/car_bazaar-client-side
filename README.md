@@ -3,8 +3,8 @@
 **Car Bazaar** is a Used Car Selling Website.
 Have a Look - [Live Link](https://car-bazaar-49998.web.app/)
 
-for admin login use:
-adminEmail: admin@carbazaar.com
+for admin login use:**Enter**
+adminEmail: admin@carbazaar.com**Enter**
 adminPassword: 123456
 
 ## Features and Functionalities
