@@ -4,12 +4,14 @@ import toast from 'react-hot-toast';
 import { useNavigate, useParams } from 'react-router-dom';
 import Loader from '../../components/Loader/Loader';
 import { AuthContext } from '../../context/AuthProvider';
+import useAdmin from '../../hooks/useAdmin';
 import useSeller from '../../hooks/useSeller';
 
 const ProductsByCategory = () => {
   let { id } = useParams();
   const { user, logOut } = useContext(AuthContext);
   const [isSeller, isSellerLoading] = useSeller(user?.email);
+  const [isAdmin, isAdminLoading] = useAdmin(user?.email);
 
   const [bookingItem, setBookingItem] = useState(null);
   const navigate = useNavigate();
@@ -61,8 +63,8 @@ const ProductsByCategory = () => {
       });
   };
 
-  if (isSellerLoading) return <Loader />;
-  if (isSeller)
+  if (isSellerLoading || isAdminLoading) return <Loader />;
+  if (isSeller || isAdmin)
     return (
       <div className='h-[90vh] flex items-center justify-center'>
         <div className='-mt-16 text-center'>

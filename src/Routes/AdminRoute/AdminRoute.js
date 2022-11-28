@@ -1,11 +1,11 @@
 import { useContext } from 'react';
 import Loader from '../../components/Loader/Loader';
 import { AuthContext } from '../../context/AuthProvider';
-import useSeller from '../../hooks/useSeller';
+import useAdmin from '../../hooks/useAdmin';
 
 const AdminRoute = ({ children }) => {
   const { user } = useContext(AuthContext);
-  const [isAdmin, isAdminLoading] = useSeller(user?.email);
+  const [isAdmin, isAdminLoading] = useAdmin(user?.email);
   if (isAdminLoading) return <Loader />;
 
   if (isAdmin) return children;

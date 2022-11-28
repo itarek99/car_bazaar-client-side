@@ -24,8 +24,6 @@ const DashboardLayout = () => {
       });
   };
 
-  console.log(isAdmin, isSeller);
-
   if (isAdminLoading) return <Loader />;
   if (isSellerLoading) return <Loader />;
 
@@ -66,7 +64,7 @@ const DashboardLayout = () => {
                 <Link to='/dashboard/all-sellers'>All Sellers</Link>
               </li>
               <li className='font-medium hover:text-primary'>
-                <Link to='/dashboard/my-buyers'>All Buyers</Link>
+                <Link to='/dashboard/all-buyers'>All Buyers</Link>
               </li>
               <li className='font-medium hover:text-primary'>
                 <Link to='/dashboard/reported-products'>Reported Product</Link>
