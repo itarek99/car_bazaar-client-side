@@ -5,6 +5,7 @@ import AddProduct from '../Pages/AddProduct/AddProduct';
 import Home from '../Pages/Home/Home';
 import Login from '../Pages/Login/Login';
 import MyProducts from '../Pages/MyProducts/MyProducts';
+import NotFoundRoute from '../Pages/NotFoundRoute/NotFoundRoute';
 import ProductsByCategory from '../Pages/ProductsByCategory/ProductsByCategory';
 import Register from '../Pages/Register/Register';
 import PrivateRoute from './PrivateRoute/PrivateRoute';
@@ -54,8 +55,8 @@ const router = createBrowserRouter([
       },
     ],
   },
-  // TODO: Add 404 Page
-  { path: '*', element: <p>Page Not Found</p> },
+
+  { path: '*', element: <NotFoundRoute /> },
 ]);
 
 export default router;

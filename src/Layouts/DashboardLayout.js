@@ -2,13 +2,14 @@ import { useContext } from 'react';
 import toast from 'react-hot-toast';
 import { HiHome, HiMenuAlt3 } from 'react-icons/hi';
 import { Link, Outlet, useNavigate } from 'react-router-dom';
+import Loader from '../components/Loader/Loader';
 import { AuthContext } from '../context/AuthProvider';
 import useSeller from '../hooks/useSeller';
 
 const DashboardLayout = () => {
   const { logOut, user } = useContext(AuthContext);
   const navigate = useNavigate();
-  const [isSeller] = useSeller(user?.email);
+  const [isSeller, isSellerLoading] = useSeller(user?.email);
 
   const handleLogOut = () => {
     logOut()
@@ -20,6 +21,8 @@ const DashboardLayout = () => {
         toast.error('Something Went Wrong!');
       });
   };
+
+  if (isSellerLoading) return <Loader />;
 
   return (
     <div className='drawer drawer-mobile'>

@@ -4,16 +4,16 @@ const Hero = () => {
   };
 
   return (
-    <div className='hero min-h-screen' style={heroBG}>
+    <div className='hero min-h-[92vh]' style={heroBG}>
       <div className='hero-overlay bg-black bg-opacity-40'></div>
       <div className='hero-content text-center text-neutral-content'>
-        <div className='width-full text-white mt-24'>
-          <h1 className='mb-5 text-6xl font-bold'>WELCOME TO CAR BAZAAR</h1>
+        <div className='width-full text-white'>
+          <h1 className='mb-5 text-3xl lg:text-6xl font-bold'>WELCOME TO CAR BAZAAR</h1>
           <p className='mb-5 max-w-lg mx-auto'>
             carbazaar.com is the leading search car venture in Bangladesh, that helps users buy cars that are right for
             them.
           </p>
-          <button className='btn btn-primary'>Get Started</button>
+          <button className='btn btn-primary text-white'>Get Started</button>
         </div>
       </div>
     </div>
