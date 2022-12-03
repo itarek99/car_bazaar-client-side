@@ -6,6 +6,7 @@ import Loader from '../../components/Loader/Loader';
 import { AuthContext } from '../../context/AuthProvider';
 import useAdmin from '../../hooks/useAdmin';
 import useSeller from '../../hooks/useSeller';
+import ProductCard from './components/ProductCard';
 
 const ProductsByCategory = () => {
   let { id } = useParams();
@@ -87,48 +88,8 @@ const ProductsByCategory = () => {
         )}
 
         <div className='flex flex-col gap-8 mt-6 mb-12'>
-          {carsByCategory?.map((carByCategory) => (
-            <div key={carByCategory._id} className='grid grid-cols-1 items-center md:grid-cols-3 shadow-md'>
-              <div className='h-72'>
-                <img className='h-72 w-full object-cover' src={carByCategory.photo} alt='' />
-              </div>
-              <div className='md:col-span-2 p-6'>
-                <div className=''>
-                  <div className='flex justify-between items-center'>
-                    <p className='text-primary text-lg font-bold capitalize'>
-                      {carByCategory.brand} {carByCategory.model}
-                    </p>
-                    {carByCategory.advertise && <div className='badge badge-primary text-white py-3'>Advertised</div>}
-                  </div>
-                  <p className=''>{carByCategory.location}</p>
-                  <p className='text-sm'>Posted on: {new Date(carByCategory?.posted_time).toLocaleString()}</p>
-                </div>
-                <div className='flex justify-between'>
-                  <div>
-                    <p>Resale Price</p>
-                    <p>{carByCategory.selling_price}</p>
-                  </div>
-                  <div>
-                    <p>New Price</p>
-                    <p>{carByCategory.new_price}</p>
-                  </div>
-                  <div>
-                    <p>Years Of Use</p>
-                    <p>{new Date(carByCategory?.posted_time).getFullYear() - carByCategory.purchasing_year}</p>
-                  </div>
-                </div>
-                <div>Advertise By: {carByCategory.advertiser_name}</div>
-                <div className='text-right mt-4'>
-                  <label
-                    onClick={() => setBookingItem(carByCategory)}
-                    htmlFor='booking-modal'
-                    className='btn btn-primary text-white'
-                  >
-                    Book Now
-                  </label>
-                </div>
-              </div>
-            </div>
+          {carsByCategory?.map((productDerails) => (
+            <ProductCard key={productDerails._id} productDerails={productDerails} setBookingItem={setBookingItem} />
           ))}
         </div>
       </div>
