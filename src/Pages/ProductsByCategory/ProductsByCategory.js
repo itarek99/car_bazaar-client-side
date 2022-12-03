@@ -1,6 +1,5 @@
 import { useQuery } from '@tanstack/react-query';
 import { useContext, useState } from 'react';
-
 import { useNavigate, useParams } from 'react-router-dom';
 import Loader from '../../components/Loader/Loader';
 import { AuthContext } from '../../context/AuthProvider';
@@ -37,10 +36,10 @@ const ProductsByCategory = () => {
   if (isSellerLoading || isAdminLoading) return <Loader />;
   if (isSeller || isAdmin)
     return (
-      <div className='h-[90vh] flex items-center justify-center'>
+      <div className='flex h-[90vh] items-center justify-center'>
         <div className='-mt-16 text-center'>
           <p className='text-xl'>Please Logout And Login With Buyer Account!</p>
-          <button onClick={handleLogOut} className='btn btn-primary text-white mt-4'>
+          <button onClick={handleLogOut} className='btn-primary btn mt-4 text-white'>
             Log Out
           </button>
         </div>
@@ -50,14 +49,14 @@ const ProductsByCategory = () => {
 
   return (
     <div className='container mx-auto px-2'>
-      <div className=' max-w-5xl mx-auto'>
+      <div className='mx-auto max-w-5xl'>
         {carsByCategory.length > 0 ? (
-          <h3 className='capitalize text-xl font-bold mt-2'>All Advertisements On "{id}" Category:</h3>
+          <h3 className='mt-2 text-xl font-bold capitalize'>All Advertisements On "{id}" Category:</h3>
         ) : (
-          <h3 className='capitalize text-xl font-bold mt-8 text-center'>No Advertisements On "{id}" Category</h3>
+          <h3 className='mt-8 text-center text-xl font-bold capitalize'>No Advertisements On "{id}" Category</h3>
         )}
 
-        <div className='flex flex-col gap-8 mt-6 mb-12'>
+        <div className='mt-6 mb-12 flex flex-col gap-8'>
           {carsByCategory?.map((productDerails) => (
             <ProductCard key={productDerails._id} productDerails={productDerails} setBookingItem={setBookingItem} />
           ))}

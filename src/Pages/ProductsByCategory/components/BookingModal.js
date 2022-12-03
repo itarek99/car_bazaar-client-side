@@ -44,11 +44,11 @@ const BookingModal = ({ setBookingItem, bookingItem, refetch }) => {
           <label
             onClick={() => setBookingItem(null)}
             htmlFor='booking-modal'
-            className='btn btn-sm btn-circle absolute right-2 top-2'
+            className='btn-sm btn-circle btn absolute right-2 top-2'
           >
             ✕
           </label>
-          <h3 className='text-lg font-bold mb-4'>
+          <h3 className='mb-4 text-lg font-bold'>
             {bookingItem?.brand} {bookingItem?.model}
           </h3>
           <div>
@@ -59,7 +59,7 @@ const BookingModal = ({ setBookingItem, bookingItem, refetch }) => {
                   type='text'
                   defaultValue={user.displayName}
                   readOnly
-                  className='input input-bordered'
+                  className='input-bordered input'
                 />
               </div>
 
@@ -69,7 +69,7 @@ const BookingModal = ({ setBookingItem, bookingItem, refetch }) => {
                   type='email'
                   defaultValue={user.email}
                   readOnly
-                  className='input input-bordered'
+                  className='input-bordered input'
                 />
               </div>
 
@@ -79,7 +79,7 @@ const BookingModal = ({ setBookingItem, bookingItem, refetch }) => {
                   type='email'
                   defaultValue={`${bookingItem?.brand} ${bookingItem?.model}`}
                   readOnly
-                  className='input input-bordered'
+                  className='input-bordered input'
                 />
               </div>
               <div className='form-control mb-4'>
@@ -88,7 +88,7 @@ const BookingModal = ({ setBookingItem, bookingItem, refetch }) => {
                   type='number'
                   defaultValue={bookingItem?.selling_price}
                   readOnly
-                  className='input input-bordered'
+                  className='input-bordered input'
                 />
               </div>
               <div className='form-control mb-4'>
@@ -97,7 +97,7 @@ const BookingModal = ({ setBookingItem, bookingItem, refetch }) => {
                   name='buyerPhone'
                   type='text'
                   placeholder='Phone Number'
-                  className='input input-bordered'
+                  className='input-bordered input'
                 />
               </div>
               <div className='form-control mb-4'>
@@ -106,11 +106,11 @@ const BookingModal = ({ setBookingItem, bookingItem, refetch }) => {
                   name='meetingLocation'
                   type='text'
                   placeholder='Meeting Location'
-                  className='input input-bordered'
+                  className='input-bordered input'
                 />
               </div>
 
-              <button type='submit' className='btn btn-primary'>
+              <button type='submit' className='btn-primary btn'>
                 Book Now
               </button>
             </form>

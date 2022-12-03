@@ -1,40 +1,51 @@
+import { HiLocationMarker } from 'react-icons/hi';
+
 const ProductCard = ({ productDerails, setBookingItem }) => {
   return (
-    <div key={productDerails._id} className='grid grid-cols-1 items-center md:grid-cols-3 shadow-md'>
-      <div className='h-72'>
-        <img className='h-72 w-full object-cover' src={productDerails.photo} alt='' />
+    <div key={productDerails._id} className='grid grid-cols-1 items-center border shadow-md md:grid-cols-3'>
+      <div className='h-full'>
+        <img className='h-full w-full object-cover' src={productDerails.photo} alt='' />
       </div>
-      <div className='md:col-span-2 p-6'>
+      <div className='py-6 px-6 md:col-span-2 md:px-10'>
         <div className=''>
-          <div className='flex justify-between items-center'>
-            <p className='text-primary text-lg font-bold capitalize'>
+          <div className='flex items-center justify-between'>
+            <p className='mb-1 text-2xl font-medium capitalize text-primary'>
               {productDerails.brand} {productDerails.model}
             </p>
-            {productDerails.advertise && <div className='badge badge-primary text-white py-3'>Advertised</div>}
+            {productDerails.advertise && <div className='badge-primary badge py-3 text-white'>Advertised</div>}
           </div>
-          <p className=''>{productDerails.location}</p>
-          <p className='text-sm'>Posted on: {new Date(productDerails?.posted_time).toLocaleString()}</p>
+          <p className='flex items-center gap-1 text-sm'>
+            <HiLocationMarker />
+            {productDerails.location}
+          </p>
         </div>
-        <div className='flex justify-between'>
+        <div className='my-4 flex items-center justify-between'>
           <div>
-            <p>Resale Price</p>
-            <p>{productDerails.selling_price}</p>
+            <p className='text-sm'>New Price</p>
+            <p className='text-lg font-bold md:text-xl'>{productDerails.new_price}</p>
           </div>
+          <div className='h-16 w-[2px] bg-gray-700'></div>
           <div>
-            <p>New Price</p>
-            <p>{productDerails.new_price}</p>
+            <p className='text-sm'>Selling Price</p>
+            <p className='text-lg font-bold md:text-xl'>{productDerails.selling_price}</p>
           </div>
+          <div className='h-16 w-[2px] bg-gray-700'></div>
+
           <div>
-            <p>Years Of Use</p>
-            <p>{new Date(productDerails?.posted_time).getFullYear() - productDerails.purchasing_year}</p>
+            <p className='text-sm'>Use</p>
+            <p className='text-lg font-bold md:text-xl'>
+              {new Date(productDerails?.posted_time).getFullYear() - productDerails.purchasing_year}
+              <span className='text-sm font-normal'> years</span>
+            </p>
           </div>
         </div>
-        <div>Advertise By: {productDerails.advertiser_name}</div>
-        <div className='text-right mt-4'>
+        <div className='text-sm text-gray-600'>Advertise By: {productDerails.advertiser_name}</div>
+        <p className='text-xs'>Posted On: {new Date(productDerails?.posted_time).toLocaleString()}</p>
+        <div className='mt-2 text-right sm:mt-0'>
           <label
             onClick={() => setBookingItem(productDerails)}
             htmlFor='booking-modal'
-            className='btn btn-primary text-white'
+            className='btn-primary btn text-white'
           >
             Book Now
           </label>
