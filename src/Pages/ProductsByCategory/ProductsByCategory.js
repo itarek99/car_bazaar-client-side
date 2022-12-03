@@ -1,11 +1,12 @@
 import { useQuery } from '@tanstack/react-query';
 import { useContext, useState } from 'react';
-import toast from 'react-hot-toast';
+
 import { useNavigate, useParams } from 'react-router-dom';
 import Loader from '../../components/Loader/Loader';
 import { AuthContext } from '../../context/AuthProvider';
 import useAdmin from '../../hooks/useAdmin';
 import useSeller from '../../hooks/useSeller';
+import BookingModal from './components/BookingModal';
 import ProductCard from './components/ProductCard';
 
 const ProductsByCategory = () => {
@@ -31,37 +32,6 @@ const ProductsByCategory = () => {
         navigate('/login');
       })
       .catch((err) => console.error(err));
-  };
-
-  const handleBooking = (e) => {
-    e.preventDefault();
-    const form = e.target;
-    const bookingData = {
-      buyerName: form.buyerName.value,
-      buyerEmail: form.buyerEmail.value,
-      productName: form.productName.value,
-      productPrice: form.productPrice.value,
-      buyerPhone: form.buyerPhone.value,
-      meetingLocation: form.meetingLocation.value,
-      productId: bookingItem._id,
-    };
-
-    fetch(`https://car-bazar-server-seven.vercel.app/bookings`, {
-      method: 'POST',
-      headers: { 'content-type': 'application/json' },
-      body: JSON.stringify(bookingData),
-    })
-      .then((res) => res.json())
-      .then((result) => {
-        if (result.acknowledged) {
-          fetch(`https://car-bazar-server-seven.vercel.app/booked-status?productId=${result.id}`, { method: 'PATCH' });
-          toast.success('Booking Confirmed!');
-          setBookingItem(null);
-          refetch();
-        } else {
-          toast.error(result.message);
-        }
-      });
   };
 
   if (isSellerLoading || isAdminLoading) return <Loader />;
@@ -95,89 +65,7 @@ const ProductsByCategory = () => {
       </div>
 
       {/* Modal Code */}
-      {bookingItem && (
-        <>
-          <input type='checkbox' id='booking-modal' className='modal-toggle' />
-          <div className='modal'>
-            <div className='modal-box relative'>
-              <label
-                onClick={() => setBookingItem(null)}
-                htmlFor='booking-modal'
-                className='btn btn-sm btn-circle absolute right-2 top-2'
-              >
-                ✕
-              </label>
-              <h3 className='text-lg font-bold mb-4'>
-                {bookingItem?.brand} {bookingItem?.model}
-              </h3>
-              <div>
-                <form onSubmit={handleBooking}>
-                  <div className='form-control mb-4'>
-                    <input
-                      name='buyerName'
-                      type='text'
-                      defaultValue={user.displayName}
-                      readOnly
-                      className='input input-bordered'
-                    />
-                  </div>
-
-                  <div className='form-control mb-4'>
-                    <input
-                      name='buyerEmail'
-                      type='email'
-                      defaultValue={user.email}
-                      readOnly
-                      className='input input-bordered'
-                    />
-                  </div>
-
-                  <div className='form-control mb-4'>
-                    <input
-                      name='productName'
-                      type='email'
-                      defaultValue={`${bookingItem?.brand} ${bookingItem?.model}`}
-                      readOnly
-                      className='input input-bordered'
-                    />
-                  </div>
-                  <div className='form-control mb-4'>
-                    <input
-                      name='productPrice'
-                      type='number'
-                      defaultValue={bookingItem?.selling_price}
-                      readOnly
-                      className='input input-bordered'
-                    />
-                  </div>
-                  <div className='form-control mb-4'>
-                    <input
-                      required
-                      name='buyerPhone'
-                      type='text'
-                      placeholder='Phone Number'
-                      className='input input-bordered'
-                    />
-                  </div>
-                  <div className='form-control mb-4'>
-                    <input
-                      required
-                      name='meetingLocation'
-                      type='text'
-                      placeholder='Meeting Location'
-                      className='input input-bordered'
-                    />
-                  </div>
-
-                  <button type='submit' className='btn btn-primary'>
-                    Book Now
-                  </button>
-                </form>
-              </div>
-            </div>
-          </div>
-        </>
-      )}
+      {bookingItem && <BookingModal setBookingItem={setBookingItem} bookingItem={bookingItem} refetch={refetch} />}
     </div>
   );
 };
