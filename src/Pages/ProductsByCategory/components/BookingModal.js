@@ -39,8 +39,8 @@ const BookingModal = ({ setBookingItem, bookingItem, refetch }) => {
   return (
     <>
       <input type='checkbox' id='booking-modal' className='modal-toggle' />
-      <div className='modal'>
-        <div className='modal-box relative'>
+      <div className='modal px-2'>
+        <div className='modal-box relative w-full max-w-xl px-10'>
           <label
             onClick={() => setBookingItem(null)}
             htmlFor='booking-modal'
@@ -48,8 +48,8 @@ const BookingModal = ({ setBookingItem, bookingItem, refetch }) => {
           >
             ✕
           </label>
-          <h3 className='mb-4 text-lg font-bold'>
-            {bookingItem?.brand} {bookingItem?.model}
+          <h3 className='mb-4 text-base font-bold md:text-xl'>
+            Booking For "{bookingItem?.brand} {bookingItem?.model}"
           </h3>
           <div>
             <form onSubmit={handleBooking}>

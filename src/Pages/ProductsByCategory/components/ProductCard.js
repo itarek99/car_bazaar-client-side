@@ -14,7 +14,7 @@ const ProductCard = ({ productDerails, setBookingItem }) => {
             </p>
             {productDerails.advertise && <div className='badge-primary badge py-3 text-white'>Advertised</div>}
           </div>
-          <p className='flex items-center gap-1 text-sm'>
+          <p className='flex items-center gap-1'>
             <HiLocationMarker />
             {productDerails.location}
           </p>
@@ -24,12 +24,12 @@ const ProductCard = ({ productDerails, setBookingItem }) => {
             <p className='text-sm'>New Price</p>
             <p className='text-lg font-bold md:text-xl'>{productDerails.new_price}</p>
           </div>
-          <div className='h-16 w-[2px] bg-gray-700'></div>
+          <div className='h-16 w-[1px] bg-gray-700'></div>
           <div>
             <p className='text-sm'>Selling Price</p>
             <p className='text-lg font-bold md:text-xl'>{productDerails.selling_price}</p>
           </div>
-          <div className='h-16 w-[2px] bg-gray-700'></div>
+          <div className='h-16 w-[1px] bg-gray-700'></div>
 
           <div>
             <p className='text-sm'>Use</p>
