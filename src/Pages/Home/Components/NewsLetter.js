@@ -4,14 +4,15 @@ const NewsLetter = () => {
   return (
     <section className='bg-primary'>
       <div className='container mx-auto px-2 py-16'>
-        <div className='grid grid-cols-1 md:grid-cols-2 max-w-4xl mx-auto items-center'>
-          <h3 className='text-3xl font-bold text-white text-center md:text-left mb-4 md:mb-0'>
+        <div className='mx-auto grid max-w-5xl grid-cols-1 items-center lg:grid-cols-3'>
+          <h3 className='mb-4 text-center text-3xl font-bold text-white lg:mb-0 lg:text-left'>
             Subscribe To Our <br /> Weekly Newsletter
           </h3>
-          <div className='flex items-center gap-4'>
-            <input type='email' placeholder='your@email.com' className='grow input input-bordered' />
-            <button className='btn'>
-              <FaPaperPlane className='text-primary text-xl' />
+          <div className='col-span-2 flex flex-col items-center gap-4 lg:flex-row'>
+            <input type='text' placeholder='Full Name' className='input-bordered input w-full ' />
+            <input type='email' placeholder='your@email.com' className='input-bordered input w-full ' />
+            <button className='btn w-28'>
+              <FaPaperPlane className='text-xl text-primary' />
             </button>
           </div>
         </div>
