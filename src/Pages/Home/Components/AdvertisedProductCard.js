@@ -2,16 +2,18 @@ import { HiLocationMarker } from 'react-icons/hi';
 
 const AdvertisedProductCard = ({ advertisedProduct }) => {
   return (
-    <div className='card rounded-none bg-base-100 shadow-xl'>
+    <div className='card rounded-none border bg-base-100 shadow-xl'>
       <figure>
         <img className='h-60 w-full object-cover' src={advertisedProduct.photo} alt='Shoes' />
       </figure>
-      <div className='py-6 px-4'>
+      <div className='py-6 px-6'>
         <div className='flex items-center justify-between'>
           <p className='text-2xl font-medium capitalize text-primary'>
             {advertisedProduct.brand} {advertisedProduct.model}
           </p>
-          {advertisedProduct.advertise && <div className='badge-primary badge py-3 text-white'>Advertised</div>}
+          {advertisedProduct.advertise && (
+            <div className='badge-primary badge py-3 text-xs uppercase text-white'>Advertised</div>
+          )}
         </div>
         <p className='flex items-center gap-1'>
           <HiLocationMarker />
